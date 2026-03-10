@@ -96,7 +96,7 @@ export default function Home() {
                     <p className="pixel-body" style={{ color: 'var(--color-primary)', fontSize: 24, maxWidth: 600, margin: '0 auto 2.5rem', lineHeight: 1.5, fontWeight: 600, background: 'var(--bg-secondary)', border: '4px solid var(--color-primary)', padding: '1rem', boxShadow: '4px 4px 0px var(--color-primary)', position: 'relative', minHeight: '120px', textAlign: 'left' }}>
                         <span style={{ position: 'absolute', top: -12, left: -12, fontSize: 24 }}>💬</span>
                         <TypewriterText
-                            text="Your private pixel-perfect space for the crew. Collaborate, compete, and create memories together."
+                            text="Trang web riêng của nhóm Hồ Con Chim để gom ảnh, ghi lại các kỉ niệm, đặt lịch event cho việc đi chơi của nhóm và nhiều thứ khác."
                             speed={40}
                             delay={1500}
                             showCursor={true}
