@@ -1,0 +1,97 @@
+.pixel-text {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+}
+
+.pixel-body {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+}
+
+/* Typing animation */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent
+  }
+
+  50% {
+    border-color: var(--color-primary);
+  }
+}
+
+.typewriter-title {
+  display: inline-block;
+  overflow: hidden;
+  /* Ensures the content is not revealed until the animation */
+  border-right: 8px solid var(--color-primary);
+  /* The typwriter cursor */
+  white-space: nowrap;
+  /* Keeps the content on a single line */
+  margin: 0 auto;
+  /* Gives that scrolling effect as the typing happens */
+  animation:
+    typing 1.5s steps(30, end),
+    blink-caret .75s step-end infinite;
+}
+
+.typewriter-text {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 4px solid var(--color-primary);
+  white-space: nowrap;
+  margin: 0 auto;
+  animation:
+    typing 2s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+.float-anim {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes typing-cursor-blink {
+
+  from,
+  to {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.typing-cursor {
+  animation: typing-cursor-blink 1s step-end infinite;
+}
+
+@media (max-width: 768px) {
+  .responsive-grid {
+    grid-template-columns: 1fr !important;
+  }}
