@@ -1,6 +1,6 @@
 # 🎮 HCC Website
 
-A retro pixel-art themed private club website built for **HCC (Hanoi Card Club / Homie Crew Club)** — a group of friends who game, hang out, and adventure together. The site acts as a central hub for members to stay connected, plan sessions, and share memories.
+A retro pixel-art themed private club website built for **HCC (Ho Con Chim Group)** — a group of friends who game, hang out, and adventure together. The site acts as a central hub for members to stay connected, plan sessions, and share memories.
 
 ---
 
