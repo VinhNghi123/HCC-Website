@@ -1,7 +1,7 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './components/AuthContext'
-import Navbar from './components/NavBar'
+import Navbar from './components/Navbar'
 import FloatingIcons from './components/FloatingIcons'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
