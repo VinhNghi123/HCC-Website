@@ -37,9 +37,18 @@ export function MemberProfile() {
     return (
         <div style={{ paddingBottom: '4rem', padding: '2rem' }}>
             <div style={{ maxWidth: 800, margin: '0 auto' }}>
-                <Link className="pixel-text" to="/members" style={{ color: 'var(--color-primary)', textDecoration: 'none', fontSize: 14, display: 'inline-flex', alignItems: 'center', gap: 6, marginBottom: '2rem' }}>
-                    ← BACK TO PARTY
-                </Link>
+                <div style={{
+                    position: 'sticky',
+                    top: 0,
+                    zIndex: 10,
+                    background: 'var(--bg-primary)',
+                    padding: '12px 0',
+                    marginBottom: '1rem',
+                }}>
+                    <Link className="pixel-text" to="/members" style={{ color: 'var(--color-primary)', textDecoration: 'none', fontSize: 18, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                        ← BACK TO PARTY
+                    </Link>
+                </div>
 
                 <div className="pixel-box">
                     {/* Profile header */}
@@ -76,15 +85,34 @@ export function MemberProfile() {
                     </div>
 
                     <div style={{ padding: '2rem 2.5rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
-                        {/* Stats */}
+                        {/* Member Info */}
                         <div>
                             <h3 className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 16, marginBottom: '1.5rem', textShadow: '2px 2px 0px var(--bg-primary)' }}>
-                                ⚡ BATTLE STATS
+                                📋 MEMBER INFO
                             </h3>
-                            <StatBar label="Strength" value={member.stats.strength} color="var(--accent-red)" />
-                            <StatBar label="Agility" value={member.stats.agility} color="var(--accent-green)" />
-                            <StatBar label="Wisdom" value={member.stats.wisdom} color="var(--accent-purple)" />
-                            <StatBar label="Charisma" value={member.stats.charisma} color="var(--accent-yellow)" />
+                            <div style={{
+                                display: 'flex', alignItems: 'center', gap: 12,
+                                background: 'white', border: '4px solid var(--color-primary)',
+                                padding: '16px 20px', boxShadow: '4px 4px 0px rgba(0,0,0,0.1)',
+                                marginBottom: 16,
+                            }}>
+                                <span style={{ fontSize: 28 }}>📍</span>
+                                <div>
+                                    <div className="pixel-text" style={{ color: 'var(--color-secondary)', fontSize: 12, marginBottom: 4 }}>LOCATION</div>
+                                    <div className="pixel-body" style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 20 }}>{member.location}</div>
+                                </div>
+                            </div>
+                            <div style={{
+                                display: 'flex', alignItems: 'center', gap: 12,
+                                background: 'white', border: '4px solid var(--color-primary)',
+                                padding: '16px 20px', boxShadow: '4px 4px 0px rgba(0,0,0,0.1)',
+                            }}>
+                                <span style={{ fontSize: 28 }}>🎂</span>
+                                <div>
+                                    <div className="pixel-text" style={{ color: 'var(--color-secondary)', fontSize: 12, marginBottom: 4 }}>BIRTHDAY</div>
+                                    <div className="pixel-body" style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: 20 }}>{member.birthday}/2004</div>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Achievements */}
@@ -168,17 +196,22 @@ export function MembersList() {
 
                                 <p className="pixel-body" style={{ color: 'var(--color-primary)', fontSize: 20, margin: '0 0 16px', fontWeight: 600, flex: 1 }}>"{member.bio}"</p>
 
-                                {/* Mini stats */}
+                                {/* Location & Birthday */}
                                 <div style={{ display: 'flex', gap: 8, marginTop: 'auto' }}>
-                                    {Object.entries(member.stats).slice(0, 2).map(([k, v]) => (
-                                        <div key={k} style={{
-                                            flex: 1, background: 'white', border: '2px solid var(--color-primary)',
-                                            padding: '8px', textAlign: 'center',
-                                        }}>
-                                            <div className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 20, marginBottom: 4 }}>{v}</div>
-                                            <div className="pixel-text" style={{ color: 'var(--color-secondary)', fontSize: 14 }}>{k}</div>
-                                        </div>
-                                    ))}
+                                    <div style={{
+                                        flex: 1, background: 'white', border: '2px solid var(--color-primary)',
+                                        padding: '8px', textAlign: 'center',
+                                    }}>
+                                        <div className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 16, marginBottom: 4 }}>📍 {member.location}</div>
+                                        <div className="pixel-text" style={{ color: 'var(--color-secondary)', fontSize: 14 }}>LOCATION</div>
+                                    </div>
+                                    <div style={{
+                                        flex: 1, background: 'white', border: '2px solid var(--color-primary)',
+                                        padding: '8px', textAlign: 'center',
+                                    }}>
+                                        <div className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 16, marginBottom: 4 }}>🎂 {member.birthday}</div>
+                                        <div className="pixel-text" style={{ color: 'var(--color-secondary)', fontSize: 14 }}>BIRTHDAY</div>
+                                    </div>
                                 </div>
                             </div>
                         </Link>

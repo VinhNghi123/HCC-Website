@@ -20,6 +20,8 @@ export const MEMBERS = [
         emoji: "🐉",
         avatar: bimPixel,
         bio: "The fierce warrior who charges headfirst into every adventure!",
+        location: "Melbourne",
+        birthday: "17/02",
         stats: { strength: 90, agility: 75, wisdom: 60, charisma: 80 },
         achievements: ["IT", "Đẹp Trai", "Tài Xế"],
         joinDate: "2020-01-15"
@@ -35,6 +37,8 @@ export const MEMBERS = [
         emoji: "✨",
         avatar: cnhuuuPixel,
         bio: "Weaving spells and solving problems with pure intellect.",
+        location: "Wollongong",
+        birthday: "06/01",
         stats: { strength: 50, agility: 65, wisdom: 95, charisma: 85 },
         achievements: ["Lé Biên Bất Ngờ", "Wollongong Girl", "Xinh Gái"],
         joinDate: "2020-02-10"
@@ -50,6 +54,8 @@ export const MEMBERS = [
         emoji: "🗡️",
         avatar: thuongPixel,
         bio: "Silent, swift, and deadly. Strikes from the shadows.",
+        location: "Sài Gòn",
+        birthday: "16/11",
         stats: { strength: 70, agility: 95, wisdom: 70, charisma: 60 },
         achievements: ["Em Út", "Popping Girl", "Hát Hay Nhất Nhóm"],
         joinDate: "2020-03-05"
@@ -65,6 +71,8 @@ export const MEMBERS = [
         emoji: "⚔️",
         avatar: viePixel,
         bio: "Guardian of the team, standing firm when others falter.",
+        location: "Sài Gòn",
+        birthday: "15/01",
         stats: { strength: 85, agility: 60, wisdom: 75, charisma: 90 },
         achievements: ["Lé Biên Trường Tồn", "Người Lập Kèo", "Chị Đại"],
         joinDate: "2020-01-20"
@@ -80,6 +88,8 @@ export const MEMBERS = [
         emoji: "💫",
         avatar: linhchouPixel,
         bio: "Brings life to the dying and hope to the hopeless.",
+        location: "Hà Nội",
+        birthday: "16/01",
         stats: { strength: 45, agility: 70, wisdom: 90, charisma: 95 },
         achievements: ["Bắc Kì Tạm Thời", "Ngoại Giao", "Đánh Bài Dốt"],
         joinDate: "2020-04-01"
@@ -95,6 +105,8 @@ export const MEMBERS = [
         emoji: "🏹",
         avatar: chuoiPixel,
         bio: "Never misses. Patient, precise, and always on target.",
+        location: "Sài Gòn",
+        birthday: "05/02",
         stats: { strength: 65, agility: 88, wisdom: 80, charisma: 70 },
         achievements: ["Chúi", "FTU Girl", "Người lập kèo"],
         joinDate: "2020-05-15"
@@ -110,6 +122,8 @@ export const MEMBERS = [
         emoji: "🔥",
         avatar: tienPixel,
         bio: "Unstoppable force of nature. The berserker who never backs down.",
+        location: "Sài Gòn",
+        birthday: "03/06",
         stats: { strength: 98, agility: 70, wisdom: 55, charisma: 65 },
         achievements: ["Miller Nguyễn", "Thợ Đụ", "Già trước tuổi"],
         joinDate: "2019-12-01"
@@ -125,6 +139,8 @@ export const MEMBERS = [
         emoji: "🎵",
         avatar: uoaPixel,
         bio: "Songs that inspire victory and laughter in equal measure.",
+        location: "Sài Gòn",
+        birthday: "18/03",
         stats: { strength: 55, agility: 75, wisdom: 85, charisma: 98 },
         achievements: ["Thần Bài", "Winter", "Ú Oà"],
         joinDate: "2020-06-10"
@@ -140,6 +156,8 @@ export const MEMBERS = [
         emoji: "❄️",
         avatar: rosiePixel,
         bio: "Cool under pressure. Controls the battlefield with ice magic.",
+        location: "Sài Gòn",
+        birthday: "15/01",
         stats: { strength: 60, agility: 80, wisdom: 92, charisma: 75 },
         achievements: ["Tiktok Music", "Fire Girl", "EY Girl"],
         joinDate: "2020-07-20"

@@ -47,7 +47,7 @@ export default function Leaderboard() {
                             border: category === c.id ? '4px solid var(--color-primary)' : '4px dashed var(--color-primary)',
                             boxShadow: category === c.id ? '4px 4px 0px var(--color-primary)' : 'none',
                             transform: category === c.id ? 'translate(-2px, -2px)' : 'none',
-                            fontSize: 12,
+                            fontSize: 18,
                         }}>
                             {c.label}
                         </button>
@@ -70,7 +70,7 @@ export default function Leaderboard() {
                                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                                     fontSize: 32, boxShadow: '4px 4px 0px var(--color-primary)',
                                 }}>{m.avatar ? <img src={m.avatar} alt="avatar" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} /> : m.emoji}</div>
-                                <div className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 13, marginBottom: 4, background: 'var(--bg-secondary)', border: '2px solid var(--color-primary)', padding: '4px' }}>{m.nickname}</div>
+                                <div className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 18, marginBottom: 4, background: 'var(--bg-secondary)', border: '2px solid var(--color-primary)', padding: '4px' }}>{m.nickname}</div>
                                 <div className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 24, marginBottom: 12, textShadow: `2px 2px 0px ${podiumColors[i]}` }}>{m.score}</div>
                                 <div className="pixel-box" style={{
                                     height: heights[i], background: podiumColors[i],
@@ -102,14 +102,14 @@ export default function Leaderboard() {
                                 fontSize: 24, flexShrink: 0, boxShadow: '2px 2px 0px var(--color-primary)'
                             }}>{m.avatar ? <img src={m.avatar} alt="avatar" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} /> : m.emoji}</div>
                             <div style={{ flex: 1 }}>
-                                <div className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 16, marginBottom: 4 }}>{m.name}</div>
-                                <div className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 10 }}>{m.role}</div>
+                                <div className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 22, marginBottom: 4 }}>{m.name}</div>
+                                <div className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 16 }}>{m.role}</div>
                             </div>
 
                             {/* Score bar */}
                             <div style={{ width: 140, display: 'flex', flexDirection: 'column', gap: 8 }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <span className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 10 }}>{cat?.label}</span>
+                                    <span className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 16 }}>{cat?.label}</span>
                                     <span className="pixel-text" style={{ color: 'var(--accent-purple)', textShadow: '2px 2px 0px var(--color-primary)', fontSize: 20 }}>{m.score}</span>
                                 </div>
                                 <div style={{ height: 12, background: 'white', border: '2px solid var(--color-primary)' }}>
