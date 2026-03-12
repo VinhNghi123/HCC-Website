@@ -43,11 +43,12 @@ const TypewriterText = ({ text, delay = 0, speed = 50, showCursor = true }) => {
 }
 
 const features = [
-    { path: '/members', icon: '⚔️', label: 'Thành Viên Nhóm', desc: 'Xem hồ sơn thành viên', color: '#FF6B6B' },
+    { path: '/members', icon: '⚔️', label: 'Thành Viên Nhóm', desc: 'Xem hồ sơ thành viên', color: '#FF6B6B' },
     { path: '/leaderboard', icon: '🏆', label: 'Xếp Hạng', desc: 'Ai đang dẫn đầu các chỉ số', color: '#F59E0B' },
     { path: '/availability', icon: '📅', label: 'Plan Lịch', desc: 'Xem ai rảnh ngày nào để đi chơi', color: '#10B981' },
     { path: '/gallery', icon: '🖼️', label: 'Kho Ảnh', desc: 'Upload ảnh nhóm', color: '#A855F7' },
     { path: '/vote', icon: '🗳️', label: 'Vote', desc: 'Vote các hoạt động', color: '#06B6D4' },
+    { path: '/games', icon: '🎲', label: 'Games', desc: 'Chơi game cùng nhau', color: '#FF6B6B' },
 ]
 
 export default function Home() {
