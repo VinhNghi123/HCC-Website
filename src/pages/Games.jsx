@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { MEMBERS } from '../lib/members'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -440,9 +440,25 @@ function TableView({ table, onUpdate, onDelete }) {
 }
 
 function MoneyGame() {
-    const [tables, setTables] = useState([])
+    const [tables, setTables] = useState(() => {
+        try {
+            const saved = localStorage.getItem('hcc-money-tables')
+            return saved ? JSON.parse(saved) : []
+        } catch { return [] }
+    })
     const [newTableName, setNewTableName] = useState('')
-    const [selectedTableId, setSelectedTableId] = useState(null)
+    const [selectedTableId, setSelectedTableId] = useState(
+        () => localStorage.getItem('hcc-money-selected') || null
+    )
+
+    useEffect(() => {
+        localStorage.setItem('hcc-money-tables', JSON.stringify(tables))
+    }, [tables])
+
+    useEffect(() => {
+        if (selectedTableId) localStorage.setItem('hcc-money-selected', selectedTableId)
+        else localStorage.removeItem('hcc-money-selected')
+    }, [selectedTableId])
 
     const createTable = () => {
         if (!newTableName.trim()) return
