@@ -16,6 +16,7 @@ export default function Availability() {
     const [newEvent, setNewEvent] = useState({ title: '', date: '', time: '' })
     const [showAddEvent, setShowAddEvent] = useState(false)
     const [savingEvent, setSavingEvent] = useState(false)
+    const [selectedDay, setSelectedDay] = useState(null)
 
     const memberName = profile?.member_name || user?.user_metadata?.member_name
     const memberData = MEMBERS.find(m => m.name === memberName)
@@ -51,6 +52,7 @@ export default function Availability() {
     }
 
     const toggleDay = async (day) => {
+        setSelectedDay(prev => prev === day ? prev : day)
         if (!user || !memberName) return alert('Please sign in first!')
         const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
         const myName = memberName
@@ -419,6 +421,141 @@ export default function Availability() {
                                 </p>
                             </div>
                         )}
+                    </div>
+                </div>
+
+                {/* ── Availability Graph ── */}
+                <div className="pixel-box" style={{ marginTop: '2rem', padding: 0, overflow: 'hidden' }}>
+                    {/* Header */}
+                    <div style={{ background: 'var(--accent-green)', padding: '12px 16px', borderBottom: '4px solid var(--color-primary)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <h3 className="pixel-text" style={{ color: '#fff', fontSize: 18, textShadow: '2px 2px 0px var(--color-primary)', margin: 0 }}>
+                            📊 PARTY METER — {MONTHS[month].toUpperCase()} {year}
+                        </h3>
+                        {selectedDay && (
+                            <button
+                                onClick={() => setSelectedDay(null)}
+                                style={{ background: '#fff', border: '3px solid var(--color-primary)', padding: '4px 10px', fontFamily: 'var(--font-pixel)', fontSize: 11, cursor: 'pointer', color: 'var(--color-primary)', boxShadow: '2px 2px 0 var(--color-primary)' }}
+                            >✕ CLOSE</button>
+                        )}
+                    </div>
+
+                    <div style={{ padding: '1.5rem', background: '#fff' }}>
+                        {/* Selected day detail panel */}
+                        {selectedDay && (() => {
+                            const dateKey = getDateKey(selectedDay)
+                            const availableNames = availabilities[dateKey] || []
+                            const count = availableNames.length
+                            const dayEvents = getEventsForDay(selectedDay)
+                            return (
+                                <div style={{ marginBottom: '1.5rem', padding: '1rem', background: 'var(--bg-secondary)', border: '4px solid var(--color-primary)', boxShadow: '4px 4px 0 var(--color-primary)' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', marginBottom: '0.75rem' }}>
+                                        <span className="pixel-text" style={{ fontSize: 16, color: 'var(--color-primary)' }}>
+                                            {MONTHS[month].slice(0, 3).toUpperCase()} {selectedDay} — {count}/{MEMBERS.length} FREE
+                                        </span>
+                                        {dayEvents.map(ev => (
+                                            <span key={ev.id} style={{ background: 'var(--accent-red)', color: '#fff', padding: '4px 10px', fontFamily: 'var(--font-pixel)', fontSize: 12, border: '2px solid var(--color-primary)' }}>
+                                                ★ {ev.title}{ev.time ? ` @ ${ev.time.slice(0, 5)}` : ''}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                                        {MEMBERS.map(m => {
+                                            const isAvail = availableNames.includes(m.name)
+                                            return (
+                                                <div key={m.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, opacity: isAvail ? 1 : 0.25, transition: 'opacity 0.15s' }}>
+                                                    <img src={m.avatar} alt={m.nickname} style={{ width: 36, height: 36, borderRadius: '50%', border: `3px solid ${isAvail ? m.color : '#ccc'}`, objectFit: 'cover', imageRendering: 'pixelated' }} />
+                                                    <span style={{ fontSize: 9, fontFamily: 'var(--font-pixel)', color: 'var(--color-primary)' }}>{m.nickname}</span>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                    {count === 0 && (
+                                        <p className="pixel-text" style={{ margin: '0.5rem 0 0', fontSize: 12, color: 'var(--color-primary)', opacity: 0.6 }}>No one marked free this day yet.</p>
+                                    )}
+                                </div>
+                            )
+                        })()}
+
+                        {/* Bar chart */}
+                        <div style={{ display: 'flex', gap: 4, alignItems: 'flex-end' }}>
+                            {/* Y-axis */}
+                            <div style={{ display: 'flex', flexDirection: 'column-reverse', marginRight: 4, flexShrink: 0, gap: 1 }}>
+                                {Array(MEMBERS.length + 1).fill(null).map((_, i) => (
+                                    <div key={i} style={{ height: 12, display: 'flex', alignItems: 'center' }}>
+                                        <span style={{ fontSize: 12, fontFamily: 'var(--font-pixel)', color: 'var(--color-primary)', lineHeight: 1 }}>{i}</span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Day columns */}
+                            <div style={{ flex: 1, display: 'flex', gap: 2 }}>
+                                {Array(daysInMonth).fill(null).map((_, i) => {
+                                    const day = i + 1
+                                    const dateKey = getDateKey(day)
+                                    const availableNames = availabilities[dateKey] || []
+                                    const dayEvents = getEventsForDay(day)
+                                    const hasEvent = dayEvents.length > 0
+                                    const isSelected = selectedDay === day
+
+                                    return (
+                                        <div
+                                            key={day}
+                                            onClick={() => setSelectedDay(prev => prev === day ? null : day)}
+                                            title={`${MONTHS[month].slice(0, 3)} ${day}: ${availableNames.length}/${MEMBERS.length} free`}
+                                            style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, cursor: 'pointer' }}
+                                        >
+                                            {/* Stacked member pixel blocks */}
+                                            <div style={{
+                                                display: 'flex',
+                                                flexDirection: 'column-reverse',
+                                                gap: 1,
+                                                width: '100%',
+                                                outline: isSelected ? '3px solid var(--accent-red)' : hasEvent ? '2px solid var(--accent-red)' : 'none',
+                                                outlineOffset: 2,
+                                            }}>
+                                                {MEMBERS.map(m => {
+                                                    const isAvail = availableNames.includes(m.name)
+                                                    return (
+                                                        <div key={m.id} style={{
+                                                            width: '100%',
+                                                            height: 12,
+                                                            background: isAvail ? m.color : '#e8e8e8',
+                                                            border: isAvail ? '1px solid rgba(0,0,0,0.2)' : '1px solid #d0d0d0',
+                                                            boxSizing: 'border-box',
+                                                            imageRendering: 'pixelated',
+                                                        }} />
+                                                    )
+                                                })}
+                                            </div>
+                                            {/* Day label */}
+                                            <span style={{
+                                                fontSize: 7,
+                                                fontFamily: 'var(--font-pixel)',
+                                                color: isSelected ? 'var(--accent-red)' : hasEvent ? 'var(--accent-red)' : 'var(--color-primary)',
+                                                fontWeight: isSelected || hasEvent ? 700 : 400,
+                                                lineHeight: 1,
+                                            }}>
+                                                {day === 1 || day % 5 === 0 || isSelected ? day : '·'}
+                                            </span>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+
+                        {/* Member color legend */}
+                        <div style={{ display: 'flex', gap: 10, marginTop: '1.5rem', flexWrap: 'wrap', borderTop: '4px solid var(--color-primary)', paddingTop: '1rem' }}>
+                            {MEMBERS.map(m => (
+                                <div key={m.id} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                                    <div style={{ width: 14, height: 14, background: m.color, border: '2px solid var(--color-primary)', imageRendering: 'pixelated', flexShrink: 0 }} />
+                                    <span className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 13 }}>{m.nickname.toUpperCase()}</span>
+                                </div>
+                            ))}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                                <div style={{ width: 14, height: 14, background: '#e8e8e8', border: '2px solid var(--color-primary)', imageRendering: 'pixelated', flexShrink: 0 }} />
+                                <span className="pixel-text" style={{ color: 'var(--color-primary)', fontSize: 13 }}>BUSY</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
