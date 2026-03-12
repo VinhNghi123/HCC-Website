@@ -10,6 +10,7 @@ import Leaderboard from './pages/Leaderboard'
 import Availability from './pages/Availability'
 import Gallery from './pages/Gallery'
 import Vote from './pages/Vote'
+import Games from './pages/Games'
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
                 <Route path="/availability" element={<Availability />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/vote" element={<Vote />} />
+                <Route path="/games" element={<Games />} />
               </Routes>
             </div>
           } />

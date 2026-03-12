@@ -10,6 +10,7 @@ const navItems = [
     { path: '/availability', label: 'Lịch', icon: '📅' },
     { path: '/gallery', label: 'KHO ẢNH', icon: '🖼️' },
     { path: '/vote', label: 'Vote', icon: '🗳️' },
+    { path: '/games', label: 'Games', icon: '🎮' },
 ]
 
 export default function Navbar() {
